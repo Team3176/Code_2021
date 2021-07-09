@@ -19,11 +19,6 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
-import frc.robot.commands.auton.AutonDrive;
-import frc.robot.commands.auton.FollowGivenPath;
-import frc.robot.commands.auton.HolonomicAuton;
-import frc.robot.commands.auton.RunAuton;
-import frc.robot.commands.auton.Slalom;
 import frc.robot.commands.auton.*;
 import frc.robot.commands.teleop.*;
 import frc.robot.constants.DrivetrainConstants;
@@ -158,7 +153,8 @@ public class RobotContainer {
 
     m_Controller.getAngledShooterOffButton().whenActive(new AngledShooterOff());
   
-    m_Controller.getShootButton().whenActive(new Shoot());
+    //m_Controller.getShootButton().whenActive(new Shoot());
+    m_Controller.getShootButton().whenActive(new AutonBatteryOne());
     m_Controller.getResetShootButton().whenActive(new ShootReset());
 
     /* Angled Shooter Test Controls */
