@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Slalom extends CommandBase {
-    private Drivetrain drivetrain = Drivetrain.getInstance();
+    private Drivetrain m_Drivetrain = Drivetrain.getInstance();
     private double startTime;
     double runTimeInput;
     double time1 = 1.15;
@@ -15,25 +15,25 @@ public class Slalom extends CommandBase {
     double time3 = 3.5; // It's about that but still need to est
 
     public Slalom() {
-        addRequirements(drivetrain);
+        addRequirements(m_Drivetrain);
         runTimeInput = SmartDashboard.getNumber("runTime", 0.5);
     }
 
     @Override
     public void initialize() {
         startTime = Timer.getFPGATimestamp();
-        drivetrain.setCoordType(coordType.FIELD_CENTRIC);
-        drivetrain.resetGyro();
+        m_Drivetrain.setCoordType(coordType.FIELD_CENTRIC);
+        m_Drivetrain.resetGyro();
     }
 
     @Override
     public void execute() {
         if((startTime + time1) > Timer.getFPGATimestamp()) {
-            drivetrain.drive(0.5, 0.0, 0.0);
+            m_Drivetrain.drive(0.5, 0.0, 0.0);
         } else if((startTime + time1 + time2) > Timer.getFPGATimestamp()) {
-            drivetrain.drive(0.0, -0.5, 0.0);
+            m_Drivetrain.drive(0.0, -0.5, 0.0);
         } else if((startTime + time1 + time2 + SmartDashboard.getNumber("runTime", runTimeInput)) > Timer.getFPGATimestamp()) {
-            drivetrain.drive(0.5, 0.0, 0.0);
+            m_Drivetrain.drive(0.5, 0.0, 0.0);
         }
     }
 
@@ -44,6 +44,6 @@ public class Slalom extends CommandBase {
 
     @Override
     public void end(boolean interrupted) { 
-        drivetrain.drive(0.0, 0.0, 0.0);
+        m_Drivetrain.drive(0.0, 0.0, 0.0);
     }
 }

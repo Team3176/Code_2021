@@ -18,10 +18,10 @@ public class AutonDrive extends CommandBase {
   private double yVel;
   private double omega; //rotational velocity
   private double endTime;
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
 
   public AutonDrive(double x, double y, double rot, double time) {
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
     endTime = time;
     xVel = x;
     yVel = y;
@@ -35,15 +35,15 @@ public class AutonDrive extends CommandBase {
   public void initialize() {
 
     timer.start();
-    drivetrain.setCoordType(coordType.FIELD_CENTRIC);
-    drivetrain.setSpinLockAngle();
-    drivetrain.setSpinLock(true);
+    m_Drivetrain.setCoordType(coordType.FIELD_CENTRIC);
+    m_Drivetrain.setSpinLockAngle();
+    m_Drivetrain.setSpinLock(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.drive(xVel,yVel,omega);
+    m_Drivetrain.drive(xVel,yVel,omega);
     
   }
 

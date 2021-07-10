@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.VisionClient;
+import frc.robot.commands.auton.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -17,12 +18,14 @@ public class AutonBatteryOne extends SequentialCommandGroup{ //TODO: WIP for Aim
   String AutonBatteryOneState;
 
   public AutonBatteryOne() {
+    addCommands(
+      new RotateUntilTargetRecogd(),
+      new AlignVizHorz()
+
+
+    );
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    SmartDashboard.putString(AutonBatteryOneState, "Initialized");
-  }
 }

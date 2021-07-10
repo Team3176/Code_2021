@@ -13,7 +13,7 @@ import frc.robot.subsystems.Drivetrain.coordType;
 
 public class AutonRotate extends CommandBase {
 
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
   private double rotationSpeed;
   private double degrees;
   private double initialAngle;
@@ -22,16 +22,16 @@ public class AutonRotate extends CommandBase {
 
   /** Creates a new AutonRotate. */
   public AutonRotate(double rot, double degrees) {
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
     rotationSpeed = rot;
     this.degrees = degrees;
   }
 
   @Override
   public void initialize() {
-    drivetrain.setCoordType(coordType.FIELD_CENTRIC);
+    m_Drivetrain.setCoordType(coordType.FIELD_CENTRIC);
     //initialAngle = -drivetrain.getNavxAngle_inDegrees();
-    initialAngle = drivetrain.getNavxAngle_inDegrees();
+    initialAngle = m_Drivetrain.getNavxAngle_inDegrees();
     //rotation = Math.copySign(rotation, degrees);
     
     //goal = initialAngle + degrees;
@@ -40,7 +40,7 @@ public class AutonRotate extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.drive(0,0,-rotationSpeed);
+    m_Drivetrain.drive(0,0,-rotationSpeed);
     //currentAngle = -drivetrain.getNavxAngle_inDegrees();
     SmartDashboard.putNumber("initialAngle", initialAngle);
     SmartDashboard.putNumber("currentAngle", currentAngle);
@@ -61,12 +61,12 @@ public class AutonRotate extends CommandBase {
   }*/
   public boolean isFinished() {
     if(rotationSpeed > 0){
-    if(drivetrain.getNavxAngle_inDegrees() >= initialAngle + degrees ){
+    if(m_Drivetrain.getNavxAngle_inDegrees() >= initialAngle + degrees ){
       return true;
     }
   }
   if(rotationSpeed < 0){
-    if(drivetrain.getNavxAngle_inDegrees() <= initialAngle + -degrees ){
+    if(m_Drivetrain.getNavxAngle_inDegrees() <= initialAngle + -degrees ){
       return true;
     }
   }

@@ -7,20 +7,20 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Drivetrain.driveMode;
 
 public class SwerveDefense extends CommandBase {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
 
   public SwerveDefense() {
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
   }
 
   @Override
   public void initialize() {
-    drivetrain.setDriveMode(driveMode.DEFENSE);
+    m_Drivetrain.setDriveMode(driveMode.DEFENSE);
   }
 
   @Override
   public void execute() {
-    drivetrain.drive(0.0, 0.0, 0.0);
+    m_Drivetrain.drive(0.0, 0.0, 0.0);
   }
 
   @Override

@@ -23,8 +23,8 @@ import frc.robot.commands.auton.*;
 import frc.robot.commands.teleop.*;
 import frc.robot.constants.DrivetrainConstants;
 import frc.robot.constants.MasterConstants;
-import frc.robot.subsystems.AngledShooter;
-import frc.robot.subsystems.BallTransfer;
+import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Transfer;
 import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Flywheel;
@@ -38,10 +38,10 @@ import java.util.List;
 public class RobotContainer {
   private Controller m_Controller;
   private Compressor m_Compressor;
-  private AngledShooter m_AngledShooter;
+  private Hood m_Hood;
   private Drum m_Drum;
   private Drivetrain m_Drivetrain;
-  private BallTransfer m_BallTransfer;
+  private Transfer m_BallTransfer;
   private Flywheel m_Flywheel;
   private PowerManagement m_PowerManagement;
 
@@ -68,9 +68,9 @@ public class RobotContainer {
     m_Controller = Controller.getInstance();
 
     m_Drum = Drum.getInstance();
-    m_BallTransfer = BallTransfer.getInstance();
+    m_BallTransfer = Transfer.getInstance();
     m_Flywheel = Flywheel.getInstance();
-    m_AngledShooter = AngledShooter.getInstance();
+    m_Hood = Hood.getInstance();
     m_PowerManagement = PowerManagement.getInstance();
 
     m_PowerManagement.clearFaults();
@@ -146,12 +146,12 @@ public class RobotContainer {
     m_Controller.getDrumInputResetButton().whenActive(new DrumInputReset());
     m_Controller.getDrumCCWButton().whenActive(new DrumCCW());
   
-    m_Controller.getPOVUp().whenHeld(new AngledShooterUp());    //ANGLE SHOOTER TEST
-    m_Controller.getPOVDown().whenHeld(new AngledShooterDown());//ANGLE SHOOTER TEST
+    m_Controller.getPOVUp().whenHeld(new HoodUp());    //ANGLE SHOOTER TEST
+    m_Controller.getPOVDown().whenHeld(new HoodDown());//ANGLE SHOOTER TEST
     m_Controller.getPOVLeft().whenHeld(new FlywheelSlow());
     m_Controller.getPOVRight().whenHeld(new FlywheelSpeed());
 
-    m_Controller.getAngledShooterOffButton().whenActive(new AngledShooterOff());
+    m_Controller.getHoodOffButton().whenActive(new HoodOff());
   
     //m_Controller.getShootButton().whenActive(new Shoot());
     m_Controller.getShootButton().whenActive(new AutonBatteryOne());
@@ -159,10 +159,10 @@ public class RobotContainer {
 
     /* Angled Shooter Test Controls */
 
-    m_Controller.getUShoot().whenActive(new AngledShooterUp());
-    m_Controller.getDShoot().whenActive(new AngledShooterDown());
-    m_Controller.getHShoot().whenActive(new AngledShooterOff());
-    m_Controller.getPShoot().whenActive(new AngledShooterPIDTuner());
+    m_Controller.getUShoot().whenActive(new HoodUp());
+    m_Controller.getDShoot().whenActive(new HoodDown());
+    m_Controller.getHShoot().whenActive(new HoodOff());
+    m_Controller.getPShoot().whenActive(new HoodPIDTuner());
   }
 
   public Command getAutonomousCommand() {

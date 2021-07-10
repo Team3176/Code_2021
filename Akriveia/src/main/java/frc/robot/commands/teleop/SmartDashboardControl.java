@@ -10,12 +10,12 @@ import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.Flywheel;
 
 public class SmartDashboardControl extends CommandBase {
-  public Flywheel fly = Flywheel.getInstance();
-  public Drum drum = Drum.getInstance();
+  public Flywheel m_Flywheel = Flywheel.getInstance();
+  public Drum m_Drum = Drum.getInstance();
 
   public SmartDashboardControl() {
-    addRequirements(fly);
-    addRequirements(drum);
+    addRequirements(m_Flywheel);
+    addRequirements(m_Drum);
   }
 
   // Called when the command is initially scheduled.
@@ -31,15 +31,15 @@ public class SmartDashboardControl extends CommandBase {
     double fPCT = SmartDashboard.getNumber("fly pct", 0);
     double dPCT = SmartDashboard.getNumber("drum pct", 0);
 
-    fly.spinVelocityOutputPercent(fPCT);
-    drum.pctCtrl_set(dPCT);
+    m_Flywheel.spinVelocityOutputPercent(fPCT);
+    m_Drum.pctCtrl_set(dPCT);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    fly.spinVelocityOutputPercent(0);
-    drum.pctCtrl_set(0);
+    m_Flywheel.spinVelocityOutputPercent(0);
+    m_Drum.pctCtrl_set(0);
   }
 
   // Returns true when the command should end.

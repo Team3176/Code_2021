@@ -6,7 +6,7 @@ package frc.robot.commands.teleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.VisionClient;
-import frc.robot.subsystems.AngledShooter;
+import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Flywheel;
 
 // we are in the eighth hole from the front on the LL base plate
@@ -15,7 +15,7 @@ public class AtlasForInterstellarAccuracy extends CommandBase {
   
   private VisionClient m_VisionClient = VisionClient.getInstance();
   private Flywheel m_Flywheel = Flywheel.getInstance();
-  private AngledShooter m_AngledShooter = AngledShooter.getInstance();
+  private Hood m_Hood = Hood.getInstance();
   private String zone;
   private boolean isHoodUp;
 
@@ -24,11 +24,11 @@ public class AtlasForInterstellarAccuracy extends CommandBase {
   @Override
   public void initialize(){
     addRequirements(m_Flywheel);
-    addRequirements(m_AngledShooter);
+    addRequirements(m_Hood);
 
-    m_AngledShooter.pctCtrl_raiseHoodPosition();
+    m_Hood.pctCtrl_raiseHoodPosition();
     isHoodUp = true;
-    m_AngledShooter.pctCtrl_holdHoodPosition();
+    m_Hood.pctCtrl_holdHoodPosition();
     m_VisionClient.setAtlasOn(true);  
   }
 
@@ -38,34 +38,34 @@ public class AtlasForInterstellarAccuracy extends CommandBase {
     if(zone.equals("GREEN")){
       m_Flywheel.setVisionCtrlRPM(3000);
       if(isHoodUp){
-        m_AngledShooter.pctCtrl_lowerHoodPosition();
+        m_Hood.pctCtrl_lowerHoodPosition();
         isHoodUp = false;
       }
     } else if(zone.equals("YELLOW")){
       m_Flywheel.setVisionCtrlRPM(3850);
       if(!isHoodUp){
-        m_AngledShooter.pctCtrl_raiseHoodPosition();
-        m_AngledShooter.pctCtrl_holdHoodPosition();
+        m_Hood.pctCtrl_raiseHoodPosition();
+        m_Hood.pctCtrl_holdHoodPosition();
         isHoodUp = true;
       }
     } else if(zone.equals("BLUE")){
       m_Flywheel.setVisionCtrlRPM(4000);
       if(!isHoodUp){
-        m_AngledShooter.pctCtrl_raiseHoodPosition();
-        m_AngledShooter.pctCtrl_holdHoodPosition();
+        m_Hood.pctCtrl_raiseHoodPosition();
+        m_Hood.pctCtrl_holdHoodPosition();
         isHoodUp = true;
       }
     } else if(zone.equals("RED")){
       m_Flywheel.setVisionCtrlRPM(4300);
       if(!isHoodUp){
-        m_AngledShooter.pctCtrl_raiseHoodPosition();
-        m_AngledShooter.pctCtrl_holdHoodPosition();
+        m_Hood.pctCtrl_raiseHoodPosition();
+        m_Hood.pctCtrl_holdHoodPosition();
         isHoodUp = true;
       }
     } else{
       m_Flywheel.setVisionCtrlRPM(0);
       /*if(isHoodUp){
-        m_AngledShooter.pctCtrl_lowerHoodPosition();
+        m_Hood.pctCtrl_lowerHoodPosition();
         isHoodUp = false;
       }*/
     }
@@ -74,7 +74,7 @@ public class AtlasForInterstellarAccuracy extends CommandBase {
   @Override
   public void end(boolean interrupted){
     if(isHoodUp){
-      m_AngledShooter.pctCtrl_lowerHoodPosition();
+      m_Hood.pctCtrl_lowerHoodPosition();
 
     }
     m_Flywheel.setVisionCtrlRPM(0);

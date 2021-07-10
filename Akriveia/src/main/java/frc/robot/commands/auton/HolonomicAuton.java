@@ -14,7 +14,7 @@ import frc.robot.constants.DrivetrainConstants;
 
 public class HolonomicAuton extends CommandBase {
 
-  Drivetrain drivetrain = Drivetrain.getInstance();
+  Drivetrain m_Drivetrain = Drivetrain.getInstance();
 
   HolonomicDriveController holonomicController;
   Trajectory trajectory;
@@ -52,14 +52,14 @@ public class HolonomicAuton extends CommandBase {
     }
        
     Trajectory.State nextState = trajectory.sample(trajTime);
-    ChassisSpeeds adjustedSpeeds = holonomicController.calculate(drivetrain.getCurrentPose(), nextState, nextState.poseMeters.getRotation());
+    ChassisSpeeds adjustedSpeeds = holonomicController.calculate(m_Drivetrain.getCurrentPose(), nextState, nextState.poseMeters.getRotation());
 
     // Simpily normalizing to get -1 to 1
     double forwardCommand = adjustedSpeeds.vxMetersPerSecond / DrivetrainConstants.MAX_WHEEL_SPEED_METERS_PER_SECOND;
     double strafeCommand = adjustedSpeeds.vyMetersPerSecond / DrivetrainConstants.MAX_WHEEL_SPEED_METERS_PER_SECOND;
     double spinCommand = adjustedSpeeds.omegaRadiansPerSecond / DrivetrainConstants.MAX_ROT_SPEED_RADIANS_PER_SECOND;
 
-    drivetrain.drive(forwardCommand, strafeCommand, spinCommand);
+    m_Drivetrain.drive(forwardCommand, strafeCommand, spinCommand);
   }
 
   @Override

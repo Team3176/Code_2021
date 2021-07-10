@@ -12,21 +12,21 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.*;
 
 public class AutonSelector extends CommandBase{
-  private VisionClient mVisionClient = VisionClient.getInstance();
-  private Drivetrain mDrivetrain = Drivetrain.getInstance();
-  private CommandScheduler commandScheduler = CommandScheduler.getInstance();
+  private VisionClient m_Visionclient = VisionClient.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
+  private CommandScheduler m_CommandScheduler = CommandScheduler.getInstance();
 
   private double angle;
 
   public AutonSelector(){
-    addRequirements(mDrivetrain);
+    addRequirements(m_Drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize(){
-    mVisionClient.controlLoopBallRecog();
-    angle = (mVisionClient.hasTarget == 1) ? mVisionClient.ballAngle * -VisionConstants.DEG2RAD : -999;
+    m_Visionclient.controlLoopBallRecog();
+    angle = (m_Visionclient.hasTarget == 1) ? m_Visionclient.ballAngle * -VisionConstants.DEG2RAD : -999;
   }
 
   /**
@@ -44,7 +44,7 @@ public class AutonSelector extends CommandBase{
    */
   @Override
   public void execute(){
-    commandScheduler.schedule(new IntakeDropViaSpinning());
+    m_CommandScheduler.schedule(new IntakeDropViaSpinning());
 
     SmartDashboard.putNumber("Received Angle (rad)", angle);
     if(angle == -999){
@@ -53,19 +53,19 @@ public class AutonSelector extends CommandBase{
     } else if(angle < -.29){
       // A - blue
       SmartDashboard.putString("Path", "A - blue");
-      mDrivetrain.drive(Math.cos(-.3805063771), Math.sin(-.3805063771), 0);
+      m_Drivetrain.drive(Math.cos(-.3805063771), Math.sin(-.3805063771), 0);
     } else if(angle < -.08){
       // B - blue
       SmartDashboard.putString("Path", "B - blue");
-      mDrivetrain.drive(Math.cos(-.197395598), Math.sin(-.197395598), 0);
+      m_Drivetrain.drive(Math.cos(-.197395598), Math.sin(-.197395598), 0);
     } else if(angle < .15){
       // A - red
       SmartDashboard.putString("Path", "A - red");
-      mDrivetrain.drive(Math.cos(0), Math.sin(0), 0);
+      m_Drivetrain.drive(Math.cos(0), Math.sin(0), 0);
     } else if(angle < .52){
       // B - red
       SmartDashboard.putString("Path", "B - red");
-      mDrivetrain.drive(Math.cos(.463647609), Math.sin(.463647409), 0);
+      m_Drivetrain.drive(Math.cos(.463647609), Math.sin(.463647409), 0);
     }
   }
 

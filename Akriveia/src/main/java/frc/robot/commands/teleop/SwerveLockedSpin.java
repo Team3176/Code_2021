@@ -12,16 +12,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class SwerveLockedSpin extends InstantCommand {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
 
   public SwerveLockedSpin() {
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
   }
 
   @Override
   public void initialize() {
-    drivetrain.setSpinLockAngle(); //Rearragned because the error would be big currAngle - 0 as error
-    drivetrain.toggleSpinLock();
+    m_Drivetrain.setSpinLockAngle(); //Rearragned because the error would be big currAngle - 0 as error
+    m_Drivetrain.toggleSpinLock();
   }
 
 }

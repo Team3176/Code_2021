@@ -66,7 +66,7 @@ public class Controller {
     private final POVButton dpadLeft;
     private final POVButton dpadRight;
 
-    private final Trigger angledShooterOffButton;
+    private final Trigger HoodOffButton;
 
     /* ANGLED SHOOTED TEST BUTTONS */
 
@@ -129,7 +129,7 @@ public class Controller {
         dpadRight = new POVButton(op, 90);
         dpadLeft = new POVButton(op, 270);
 
-        angledShooterOffButton = new XboxLoneButton(op, Button.kStart.value, Button.kBumperLeft.value);
+        HoodOffButton = new XboxLoneButton(op, Button.kStart.value, Button.kBumperLeft.value);
 
         ushootertestbutton = new JoystickButton(transStick, 8);
         dshootertestbutton = new JoystickButton(transStick, 9);
@@ -225,7 +225,7 @@ public class Controller {
     public POVButton getPOVLeft() {return dpadLeft;}
     public POVButton getPOVRight() {return dpadRight;}
 
-    public Trigger getAngledShooterOffButton() {return angledShooterOffButton;}
+    public Trigger getHoodOffButton() {return HoodOffButton;}
 
 /**
  * Unshifted:                   | Shifted:
@@ -233,7 +233,7 @@ public class Controller {
  * B - Drum Speed               | Drum Slow 
  * X - BallTransferPivotAndRoll | BallTransferPivot 
  * Y - Harvest                  | HarvestRest
- * Start - AngledShooterOff     | Agitate Drum Pre Shoot
+ * Start - HoodOff     | Agitate Drum Pre Shoot
  * Back - DrumInputReset        | CCWDrum
  * D-Pad Up - Shooter Up        |
  * D-Pad Down - Shooter Down    |

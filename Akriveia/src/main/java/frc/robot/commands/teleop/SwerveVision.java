@@ -18,7 +18,7 @@ well, we could drive across the field while staying locked onto the target with 
 
 public class SwerveVision extends CommandBase {
   private VisionClient visionClient = VisionClient.getInstance();
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
   private DoubleSupplier forwardCommand;
   private DoubleSupplier strafeCommand;
 
@@ -28,20 +28,20 @@ public class SwerveVision extends CommandBase {
   public SwerveVision(DoubleSupplier forwardCommand, DoubleSupplier strafeCommand) {
     this.forwardCommand = forwardCommand;
     this.strafeCommand = strafeCommand;
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
 
     spinPID = new PIDLoop(0.3, 0.0, 0.0, 0.0);
   }
 
   @Override
   public void initialize() {
-    drivetrain.setDriveMode(driveMode.VISION);
+    m_Drivetrain.setDriveMode(driveMode.VISION);
   }
 
   @Override
   public void execute() {
-    spinOutput = spinPID.returnOutput(drivetrain.getGyroAngle(), drivetrain.getGyroAngle() + visionClient.getBallDegrees());
-    drivetrain.drive(forwardCommand.getAsDouble(), strafeCommand.getAsDouble(), spinOutput);
+    spinOutput = spinPID.returnOutput(m_Drivetrain.getGyroAngle(), m_Drivetrain.getGyroAngle() + visionClient.getBallDegrees());
+    m_Drivetrain.drive(forwardCommand.getAsDouble(), strafeCommand.getAsDouble(), spinOutput);
   }
 
   @Override

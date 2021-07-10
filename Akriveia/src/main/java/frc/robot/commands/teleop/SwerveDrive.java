@@ -10,7 +10,7 @@ import frc.robot.subsystems.Drivetrain.coordType;
 import frc.robot.subsystems.Drivetrain.driveMode;
 
 public class SwerveDrive extends CommandBase {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
   private DoubleSupplier forwardCommand;
   private DoubleSupplier strafeCommand;
   private DoubleSupplier spinCommand;
@@ -27,29 +27,29 @@ public class SwerveDrive extends CommandBase {
     this.isFieldCentric = isFieldCentric;
     this.isRobotCentric = isRobotCentric;
     this.isBackRobotCentric = isBackRobotCentric;
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
   }
 
   @Override
   public void initialize() {
-    drivetrain.setDriveMode(driveMode.DRIVE);
-    drivetrain.setSpinLock(false);
+    m_Drivetrain.setDriveMode(driveMode.DRIVE);
+    m_Drivetrain.setSpinLock(false);
   }
 
   @Override
   public void execute() {
 
     if(isFieldCentric.getAsBoolean()) {
-      drivetrain.setCoordType(coordType.FIELD_CENTRIC);
-      drivetrain.setFieldCentricOffset();
+      m_Drivetrain.setCoordType(coordType.FIELD_CENTRIC);
+      m_Drivetrain.setFieldCentricOffset();
     }
     if(isRobotCentric.getAsBoolean()) {
-      drivetrain.setCoordType(coordType.ROBOT_CENTRIC);
+      m_Drivetrain.setCoordType(coordType.ROBOT_CENTRIC);
     }
     if(isBackRobotCentric.getAsBoolean()) {
-      drivetrain.setCoordType(coordType.BACK_ROBOT_CENTRIC);
+      m_Drivetrain.setCoordType(coordType.BACK_ROBOT_CENTRIC);
     }
-    drivetrain.drive(forwardCommand.getAsDouble() * DrivetrainConstants.MAX_WHEEL_SPEED_FEET_PER_SECOND, strafeCommand.getAsDouble() * DrivetrainConstants.MAX_WHEEL_SPEED_FEET_PER_SECOND, spinCommand.getAsDouble()*10);
+    m_Drivetrain.drive(forwardCommand.getAsDouble() * DrivetrainConstants.MAX_WHEEL_SPEED_FEET_PER_SECOND, strafeCommand.getAsDouble() * DrivetrainConstants.MAX_WHEEL_SPEED_FEET_PER_SECOND, spinCommand.getAsDouble()*10);
   }
 
   @Override

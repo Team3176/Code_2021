@@ -8,18 +8,18 @@ import frc.robot.subsystems.Drum;
  * Shakes the Drum briefly and stops the Intake.
  */
 public class IntakeHarvestReset extends InstantCommand {
-  Drum mDrum = Drum.getInstance();
+  Drum m_Drum = Drum.getInstance();
  
 
   public IntakeHarvestReset() {
-    addRequirements(mDrum);
+    addRequirements(m_Drum);
 
   }
 
   @Override
   public void initialize() {
     // System.out.println("IntakeHarvestReset.initialize executed. ############################################################");
-    mDrum.shakeDrum();
+    m_Drum.shakeDrum();
     // mIntake.retractIntake();
     // System.out.println("SPRING");
   }

@@ -22,11 +22,11 @@ public class PowerManagement extends SubsystemBase {
         DrumPM = new ElectricalData(PowerManagementConstants.DRUM_PDP_CHANNEL, "Drum", 5);
     }
 
-    public double getAngledShooterInstantAmp() {
+    public double getHoodInstantAmp() {
         return HoodPM.getInstantaneousAmp();
     }
 
-    public double getAngledShooterAvgAmp() {
+    public double getHoodAvgAmp() {
         return HoodPM.mean();
     }
 

@@ -13,11 +13,11 @@ import frc.robot.subsystems.Drivetrain;
  * Makes the gyro's "zero point" its current position, for recallibration.
  */
 public class SwerveResetGyro extends CommandBase {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
+  private Drivetrain m_Drivetrain = Drivetrain.getInstance();
   private boolean isreset;
 
   public SwerveResetGyro() {
-    addRequirements(drivetrain);
+    addRequirements(m_Drivetrain);
     isreset = false;
   }
 
@@ -27,7 +27,7 @@ public class SwerveResetGyro extends CommandBase {
 
   @Override
   public void execute() {
-    drivetrain.resetGyro();
+    m_Drivetrain.resetGyro();
     isreset = true;
   }
 

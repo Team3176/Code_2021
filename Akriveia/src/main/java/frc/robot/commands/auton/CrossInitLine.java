@@ -4,10 +4,10 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CrossInitLine extends CommandBase {
-    private Drivetrain drivetrain = Drivetrain.getInstance();
+    private Drivetrain m_Drivetrain = Drivetrain.getInstance();
 
     public CrossInitLine() {
-        addRequirements(drivetrain);
+        addRequirements(m_Drivetrain);
     }
 
     @Override

@@ -16,7 +16,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class FollowGivenPath extends CommandBase {
   
-  private Drivetrain drivetrain;
+  private Drivetrain m_Drivetrain;
   private Trajectory trajectory;
   private Robot robot;
   private RobotContainer container;
@@ -30,7 +30,7 @@ public class FollowGivenPath extends CommandBase {
   @Override
   public void initialize() {
 
-    drivetrain = Drivetrain.getInstance();
+    m_Drivetrain = Drivetrain.getInstance();
     
    
 
@@ -55,7 +55,7 @@ public class FollowGivenPath extends CommandBase {
         drivetrain);*/
 
 // Reset odometry to the starting pose of the trajectory.
-drivetrain.resetOdometry(trajectory.getInitialPose());
+m_Drivetrain.resetOdometry(trajectory.getInitialPose());
 
 
 }
