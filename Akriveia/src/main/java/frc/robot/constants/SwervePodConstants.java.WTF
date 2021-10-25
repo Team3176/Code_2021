@@ -149,8 +149,23 @@ public final class SwervePodConstants {
     // public static final int[] SPIN_OFFSET_2019 = {-7492, -6034, -6649, 1305}; // 2019 Bot
     public static final int[] SPIN_OFFSET_2019 = {-1389, 3863, 3625, -688};
 
-    // public static final int[] SPIN_OFFSET_2021 = {424, 224, 2826, 2807}; // 2021 Bot //OrigOff
-    public static final int[] SPIN_OFFSET_2021 = {2703, 339, 2863, 2757}; // 2021 Bot //WTFOffsets
+    //public static final int[] SPIN_OFFSET_2021 = {5807, 3403, 1855, -201}; // 2021 Bot
+    public static final int[] SPIN_OFFSET_2021 = {2703, 339, 2863, 2757}; // 2021 Bot
+    public static final int[] SPIN_OFFSET = (MasterConstants.is2021Bot) ? SPIN_OFFSET_2021 : SPIN_OFFSET_2019;
+
+    public static final double DRIVE_SPEED_MAX_EMPIRICAL_FEET_PER_SECOND = 13.79;
+
+    public static final double METERS_TO_FEET_CONSTANT = 3.28084;
+    public static final double FEET_TO_METERS_CONSTANT = 0.3048;
+
+
+    public static final double P_MODULE_DRIVE_CONTROLLER = 1;
+    public static final double[] P_MODULE_TURNING_CONTROLLER = {/*OLD P VALUES 1, 0, 0.3, 0.03*/ 0.08 /*kP*/, 0.0 /*kI*/, 0, 0.0};
+    public static final double MAX_MODULE_ANGULAR_SPEED_RADIANS_PER_SECOND = 2 * Math.PI;
+    public static final double MAX_MODULE_ANGULAR_ACCELERATION_RADIANS_PER_SECOND_SQUARED = 2* Math.PI;
+}
+
+
     public static final int[] SPIN_OFFSET = (MasterConstants.is2021Bot) ? SPIN_OFFSET_2021 : SPIN_OFFSET_2019;
 
     public static final double DRIVE_SPEED_MAX_EMPIRICAL_FEET_PER_SECOND = 13.79;
