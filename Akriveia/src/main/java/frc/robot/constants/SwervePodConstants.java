@@ -79,12 +79,12 @@ public final class SwervePodConstants {
     };
     
     public static final double[][] DRIVE_PID_2021 = {
-        /* kP */     {0.15, 0.1, 0.15, 0.15},
+        /* kP */     {/*0.15*/ 0.02, 0.1, 0.15, 0.15},
         // /* kI */    {0.001, 0.0015, 0.0015, 0.005}, // using these don't work
-        /* kI */    {0.0, 0.0, 0.0, 0.0},
-        /* kD */   {5.0, 8.0, 5.0, 8.0},
-        /* kF */    {0.046191, 0.04646, 0.0462, 0.04658},    // Feed forward gain constant
-        /* I-Zne */ {0.0, 0.0, 0.0, 0.0}     // The range of error for kI to take affect (like a reverse deadband)
+        /* kI */    {/*0.0*/ 0.0000042, 0.0, 0.0, 0.0},
+        /* kD */   {/*5.0*/ 0.26, 8.0, 5.0, 8.0},
+        /* kF */    {/*0.046191*/ 0.04413, 0.04646, 0.0462, 0.04658},    // Feed forward gain constant
+        /* I-Zne */ {/*0.0*/ 15, 0.0, 0.0, 0.0}     // The range of error for kI to take affect (like a reverse deadband)
     };
     // public static final double[][] DRIVE_PID = {
         // /* kP */    {0.12, 0.12, 0.12, 0.1},
