@@ -3,6 +3,13 @@ package frc.robot;
 // NOTE: All references to Drum and Transfer have been commented out until the REVRobotics library compatible with WPILib Beta
 // 2022 releases
 
+
+/*** Port to WPILib 2022 Beta Changes (not all may be listed) ***
+
+- Changed DoubleSolenoid creation method in Transfer to use new DoubleSolenoid constructor
+
+*/
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;

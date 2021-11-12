@@ -1,12 +1,14 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.PowerManagementConstants;
 import frc.robot.util.ElectricalData;
 
 public class PowerManagement extends SubsystemBase {
-    private PowerDistributionPanel PDP; 
+    private PowerDistribution PDP; 
     private static PowerManagement instance = new PowerManagement();
 
     /* We assume an update rate of 1 update per 0.02 sec; therefore, we collect 5 values in the Current History,
@@ -17,7 +19,7 @@ public class PowerManagement extends SubsystemBase {
     private ElectricalData DrumPM; 
    
     public PowerManagement() {
-        PDP = new PowerDistributionPanel(PowerManagementConstants.PDP_CAN_ID);
+        PDP = new PowerDistribution(PowerManagementConstants.PDP_CAN_ID, ModuleType.kCTRE);
         HoodPM = new ElectricalData(PowerManagementConstants.ANGLED_SHOOTER_PDP_CHANNEL, "Angled Shooter", 5);
         DrumPM = new ElectricalData(PowerManagementConstants.DRUM_PDP_CHANNEL, "Drum", 5);
     }

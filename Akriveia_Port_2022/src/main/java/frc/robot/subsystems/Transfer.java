@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.TransferConstants;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -17,7 +18,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class Transfer extends SubsystemBase {
   private static Transfer instance = new Transfer();
-  private DoubleSolenoid transferPiston = new DoubleSolenoid(TransferConstants.DS_OPEN_ID, TransferConstants.DS_CLOSE_ID);
+  private DoubleSolenoid transferPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+      TransferConstants.DS_OPEN_ID, TransferConstants.DS_CLOSE_ID);
+  // private DoubleSolenoid transferPiston = new DoubleSolenoid(TransferConstants.DS_OPEN_ID, TransferConstants.DS_CLOSE_ID);
   // private CANSparkMax transferMotor = new CANSparkMax(TransferConstants.MOTOR_CAN_ID, MotorType.kBrushless);
   private boolean pistonSetting = false;
   private double levelSetting = 0;
