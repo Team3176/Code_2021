@@ -7,6 +7,7 @@ package frc.robot;
 /*** Port to WPILib 2022 Beta Changes (not all may be listed) ***
 
 - Changed DoubleSolenoid creation method in Transfer to use new DoubleSolenoid constructor
+- Changed PowerDistributionPanel declaration to PowerDistribution, and added ModuleType.CTRE to constructor
 
 */
 

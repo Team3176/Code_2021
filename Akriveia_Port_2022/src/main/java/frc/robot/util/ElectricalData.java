@@ -2,6 +2,7 @@ package frc.robot.util;
 
 import java.util.Arrays;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import frc.robot.constants.PowerManagementConstants;
 
 public class ElectricalData {
@@ -19,7 +20,7 @@ public class ElectricalData {
      * singular unique moment must be considered time-INdependent. */
     private int windowTdx, windowTdxMax;
     private double[] ampHist = {0.0};
-    PowerDistributionPanel PDP = new PowerDistributionPanel(PowerManagementConstants.PDP_CAN_ID);
+    PowerDistribution PDP = new PowerDistribution(PowerManagementConstants.PDP_CAN_ID, ModuleType.kCTRE);
 
     /**
      * <b> Electrical Data Structure <b>
