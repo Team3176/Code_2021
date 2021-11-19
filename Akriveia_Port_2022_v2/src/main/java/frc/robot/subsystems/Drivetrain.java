@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-//TODO: Recognize the red dependecys because seeing red is annoying
+//TODO: Recognize the red dependecies because seeing red is annoying
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.*;
@@ -24,9 +24,11 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.constants.DrivetrainConstants;
+import frc.robot.constants.PowerManagementConstants;
 import frc.robot.Controller;
 // import frc.robot.Controller;
 // import frc.robot.subsystems.Vision;
@@ -43,7 +45,7 @@ public class Drivetrain extends SubsystemBase {
 
   private SwerveDriveOdometry odometry;
 
-  private PowerDistributionPanel PDP = new PowerDistributionPanel(0);
+  private PowerDistribution PDP = new PowerDistribution(PowerManagementConstants.PDP_CAN_ID, ModuleType.kCTRE);
   private AHRS gyro;
   private double gyroOffset = 0;
 

@@ -7,13 +7,16 @@ package frc.robot;
 /*** Port to WPILib 2022 Beta Changes (not all may be listed) ***
 
 - Changed DoubleSolenoid creation method in Transfer to use new DoubleSolenoid constructor
-- Changed PowerDistributionPanel declaration to PowerDistribution, and added ModuleType.CTRE to constructor
+- Changed PowerDistributionPanel declaration to PowerDistribution, and added PneumaticsModuleType.CTRE to constructor
+  - Did the same for Drivetrain
+- Changed Compressor constructor to include the PneumaticsModuleType.CTREPCM argument
 
 */
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.controller.PIDController;
@@ -80,9 +83,7 @@ public class RobotContainer {
   public SwerveControllerCommand m_SwerveControllerCommand;
 
   public RobotContainer() {
-    // TODO: Find which of the two compressor methods to use and what the values are
-    // m_Compressor = new Compressor(null);
-    // m_Compressor = new Compressor(0, null);
+    m_Compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     m_Compressor.start();
 
     m_Controller = Controller.getInstance();

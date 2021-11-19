@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -8,7 +7,7 @@ import frc.robot.constants.PowerManagementConstants;
 import frc.robot.util.ElectricalData;
 
 public class PowerManagement extends SubsystemBase {
-    private PowerDistribution PDP; 
+    private PowerDistribution PDP;
     private static PowerManagement instance = new PowerManagement();
 
     /* We assume an update rate of 1 update per 0.02 sec; therefore, we collect 5 values in the Current History,
