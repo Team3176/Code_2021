@@ -8,10 +8,9 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-/*
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-*/
 
 /**
  * Responsible for transferring the Power Cells from the Drum to the AngledShooter. Uses a piston and motor to do so.
@@ -20,8 +19,7 @@ public class Transfer extends SubsystemBase {
   private static Transfer instance = new Transfer();
   private DoubleSolenoid transferPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
       TransferConstants.DS_OPEN_ID, TransferConstants.DS_CLOSE_ID);
-  // private DoubleSolenoid transferPiston = new DoubleSolenoid(TransferConstants.DS_OPEN_ID, TransferConstants.DS_CLOSE_ID);
-  // private CANSparkMax transferMotor = new CANSparkMax(TransferConstants.MOTOR_CAN_ID, MotorType.kBrushless);
+  private CANSparkMax transferMotor = new CANSparkMax(TransferConstants.MOTOR_CAN_ID, MotorType.kBrushless);
   private boolean pistonSetting = false;
   private double levelSetting = 0;
 
@@ -34,14 +32,14 @@ public class Transfer extends SubsystemBase {
   }
 
   public void stopMotors() {
-    // transferMotor.set(0);
+    transferMotor.set(0);
   }
   /**
    * @param percent - the percent -1 to 1 inclusive of the transferMotor
    */
   public void setPercentControl(double percent) {
     levelSetting = percent;
-    // transferMotor.set(percent);
+    transferMotor.set(percent);
   }
 
   /**
@@ -105,6 +103,5 @@ public class Transfer extends SubsystemBase {
   public void periodic() {
     
   }
-
 
 }

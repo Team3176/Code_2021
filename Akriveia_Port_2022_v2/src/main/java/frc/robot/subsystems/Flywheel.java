@@ -2,14 +2,16 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonFXPIDSetConfiguration;
+
 import frc.robot.constants.FlywheelConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.Vision;
 
 public class Flywheel extends SubsystemBase {
-    WPI_TalonFX flywheelController = new WPI_TalonFX(FlywheelConstants.MOTOR_CAN_ID);
+    TalonFX flywheelController = new TalonFX(FlywheelConstants.MOTOR_CAN_ID);
     private static Flywheel instance = new Flywheel();
     private Vision m_Vision = Vision.getInstance();
     private static int lastSetting = 0;
@@ -21,9 +23,9 @@ public class Flywheel extends SubsystemBase {
 
         flywheelController.configFactoryDefault();
         flywheelController.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, FlywheelConstants.kPIDLoopIdx, FlywheelConstants.kTimeoutMs);
-        // flywheelController.configurePID(0, FlywheelConstants.kPIDLoopIdx, FlywheelConstants.kTimeoutMs);
         flywheelController.configAllowableClosedloopError(0, FlywheelConstants.kPIDLoopIdx, FlywheelConstants.kTimeoutMs);
         flywheelController.setSensorPhase(true);
+
         flywheelController.configClosedloopRamp(0.5);    
 
         flywheelController.config_kF(FlywheelConstants.kPIDLoopIdx, FlywheelConstants.PIDF[3], FlywheelConstants.kTimeoutMs);
@@ -34,7 +36,7 @@ public class Flywheel extends SubsystemBase {
     }
    
     public void stopMotors() {
-        flywheelController.set(TalonFXControlMode.PercentOutput, 0);
+        flywheelController.set(TalonFXControlMode.PercentOutput, 0.0);
     }
 
 

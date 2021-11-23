@@ -1,15 +1,18 @@
 package frc.robot;
 
-// NOTE: All references to Drum and Transfer have been commented out until the REVRobotics library compatible with WPILib Beta
-// 2022 releases
-
-
 /*** Port to WPILib 2022 Beta Changes (not all may be listed) ***
 
 - Changed DoubleSolenoid creation method in Transfer to use new DoubleSolenoid constructor
 - Changed PowerDistributionPanel declaration to PowerDistribution, and added PneumaticsModuleType.CTRE to constructor
   - Did the same for Drivetrain
 - Changed Compressor constructor to include the PneumaticsModuleType.CTREPCM argument
+- In Flywheel, changed the import import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; to import com.ctre.phoenix.motorcontrol.can.TalonFX;
+because of likely API errors with the new version (functions not working as they should), and changed the constructor for the Flywheel motor
+to match it. All the functions dependent on the motor object seem to stay happy even with a TalonFX object instead of a WPI_TalonFX object
+
+*** Current problem: Drivetrain line 152 that calls gyro.reset() errors because of an error accessing Sendable. This is likely an API error,
+so we need some way around it, like an updated library if it exists...? or we'll just have to wait for a fix. Maybe there's a different
+method that does the same thing...?
 
 */
 
@@ -38,8 +41,8 @@ import frc.robot.commands.teleop.*;
 import frc.robot.constants.DrivetrainConstants;
 import frc.robot.constants.MasterConstants;
 import frc.robot.subsystems.Hood;
-// import frc.robot.subsystems.Transfer;
-// import frc.robot.subsystems.Drum;
+import frc.robot.subsystems.Transfer;
+import frc.robot.subsystems.Drum;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.PowerManagement;
@@ -53,9 +56,9 @@ public class RobotContainer {
   private Controller m_Controller;
   private Compressor m_Compressor;
   private Hood m_AngledShooter;
-  // private Drum m_Drum;
+  private Drum m_Drum;
   private Drivetrain m_Drivetrain;
-  // private Transfer m_BallTransfer;
+  private Transfer m_BallTransfer;
   private Flywheel m_Flywheel;
   private PowerManagement m_PowerManagement;
 
@@ -88,10 +91,10 @@ public class RobotContainer {
 
     m_Controller = Controller.getInstance();
 
-    // m_Drum = Drum.getInstance();
-    // m_Drum.setDefaultCommand(new DrumCCW());
+    m_Drum = Drum.getInstance();
+    m_Drum.setDefaultCommand(new DrumCCW());
 
-    // m_BallTransfer = Transfer.getInstance();
+    m_BallTransfer = Transfer.getInstance();
     m_Flywheel = Flywheel.getInstance();
     m_AngledShooter = Hood.getInstance();
     m_PowerManagement = PowerManagement.getInstance();
@@ -268,16 +271,16 @@ public class RobotContainer {
 
   public void stopAllMotors() {
     m_AngledShooter.stopMotors();
-    // m_BallTransfer.stopMotors();
-    // m_Drum.stopMotors();
+    m_BallTransfer.stopMotors();
+    m_Drum.stopMotors();
     m_Flywheel.stopMotors();
     m_Drivetrain.stopMotors();
   }
 
   public void stopAllMotorsExceptDrivetrain() {
     m_AngledShooter.stopMotors();
-    // m_BallTransfer.stopMotors();
-    // m_Drum.stopMotors();
+    m_BallTransfer.stopMotors();
+    m_Drum.stopMotors();
     m_Flywheel.stopMotors();
   }
 
