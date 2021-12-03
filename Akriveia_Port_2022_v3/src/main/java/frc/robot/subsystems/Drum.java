@@ -2,10 +2,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -27,8 +27,8 @@ public class Drum extends SubsystemBase {
   /** Creates a new Drum. */
 
   private CANSparkMax drumMotor = new CANSparkMax(DrumConstants.MOTOR_CAN_ID, MotorType.kBrushless);
-  private CANPIDController drumPIDController;
-  private CANEncoder drumEncoder;
+  private SparkMaxPIDController drumPIDController;
+  private RelativeEncoder drumEncoder;
   private SlewRateLimiter rateLimiter;
   private static Drum instance = new Drum();
   public boolean drumPctOutputMode = false;
@@ -72,7 +72,7 @@ public class Drum extends SubsystemBase {
 
     drumMotor.setClosedLoopRampRate(.3);
 
-    drumPIDController.setReference(0.0, ControlType.kVelocity);
+    drumPIDController.setReference(0.0, CANSparkMax.ControlType.kVelocity);
     
     
     rateLimiter = new SlewRateLimiter(DrumConstants.kRampRate, 0);
