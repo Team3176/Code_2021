@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class DelayCommand extends CommandBase {
   /** Creates a new DelayCommand. */
-  private Timer timer;
   private double delayTime;
   private double startTime;
 
@@ -28,10 +27,8 @@ public class DelayCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer = new Timer();
-    timer.start();
-    startTime = timer.getFPGATimestamp();
-    System.out.println("-----TIMER STARTED------");
+    startTime = Timer.getFPGATimestamp();
+    System.out.println("-----DELAY TIMER STARTED------");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -43,8 +40,7 @@ public class DelayCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    timer.stop();
-    System.out.println("----TIMER ENDED----");
+    System.out.println("-----DELAY TIMER ENDED-----");
   }
 
   // Returns true when the command should end.

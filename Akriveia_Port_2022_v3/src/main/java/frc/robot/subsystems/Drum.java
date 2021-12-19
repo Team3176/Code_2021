@@ -72,7 +72,7 @@ public class Drum extends SubsystemBase {
 
     drumMotor.setClosedLoopRampRate(.3);
 
-    drumPIDController.setReference(0.0, ControlType.kVelocity);
+    drumPIDController.setReference(0.0, CANSparkMax.ControlType.kVelocity);
     
     
     rateLimiter = new SlewRateLimiter(DrumConstants.kRampRate, 0);

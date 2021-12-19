@@ -11,9 +11,13 @@ because of likely API errors with the new version (functions not working as they
 to match it. All the functions dependent on the motor object seem to stay happy even with a TalonFX object instead of a WPI_TalonFX object
 - Updated deprecated imports in Drivetrain to use proper new imports. They were all unused to begin with.
 - Changed m_Compressor.start() to m_Compressor.enableDigital() -- should do the same thing, start() was deprecated.
+- Changed imports and variable types for some CANSparkMax motor-related stuff in Drum, as old imports were deprecated.
+- In Drum, for drumPIDController.setReference(0.0, ControlType.kVelocity), changed second argument to CANSparkMax.ControlType.kVelocity
 
 *** Current problem: The gyro in the Drivetrain is causing problems because the AHRS class (the gyro class) extends the WPILib SendableBase
-class. However, the SendableBase and Sendable classes can't be accessed. Likely a problem on WPILib's part.
+class. However, the SendableBase and Sendable classes can't be accessed. The locations of these classes were changed in the 2022 WPILib beta,
+so we must wait for the NavX people to update the library to account for the change, or change the code of the NavX library ourselves. (Chris
+aready created something for this)
 
 */
 
