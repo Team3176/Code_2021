@@ -199,7 +199,8 @@ public class RobotContainer {
     // m_Controller.getOp_ButtonA().whenActive(new TransferDown());
     // m_Controller.getOp_ButtonAPlusBumperLeft().whenActive(new TransferUp());
 
-    m_Controller.getOp_ButtonB().whenActive(new HoodPosUp());
+    // m_Controller.getOp_ButtonB().whenActive(new HoodPosUp());
+    m_Controller.getOp_ButtonB().whenActive(new TransferDown());
     m_Controller.getOp_ButtonBPlusBumperLeft().whenActive(new HoodPosDown());
 
     m_Controller.getOp_ButtonStart().whenActive(new HoodStop());
